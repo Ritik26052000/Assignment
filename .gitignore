@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Builds
+frontend/dist/
+backend/build/
+backend/.gradle/
+backend/out/
+*.jar
+!backend/gradle/wrapper/gradle-wrapper.jar
+*.class
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# IDE
+.idea/
+*.iml
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+*.swp
+.DS_Store
+Thumbs.db
+
+# Logs & coverage
+*.log
+coverage/
+frontend/coverage/
+*.tmp
+assignment_extracted.txt
+
+# OS
+desktop.ini

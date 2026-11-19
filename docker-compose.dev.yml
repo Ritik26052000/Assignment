@@ -1,0 +1,58 @@
+# Live-reload overlay for local development (Docker Compose Watch).
+# Usage:
+#   docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build --watch
+#   npm run dev:docker
+#
+# Frontend: Vite HMR on http://localhost:3000
+# Backend:  Gradle continuous bootRun (restarts on Kotlin/Java changes)
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - backend_gradle_cache:/root/.gradle
+    environment:
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-dev}
+    develop:
+      watch:
+        - action: sync
+          path: ./backend/src
+          target: /workspace/src
+        - action: rebuild
+          path: ./backend/build.gradle.kts
+        - action: rebuild
+          path: ./backend/settings.gradle.kts
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    depends_on:
+      - backend
+    # Replace base compose `3000:80` (nginx); do not merge both onto host :3000.
+    ports: !override
+      - '3000:5173'
+    environment:
+      VITE_API_URL: /api/v1
+      VITE_PROXY_TARGET: http://backend:8080
+    volumes:
+      # Keep container node_modules; host folder is not mounted over /app.
+      - frontend_node_modules:/app/node_modules
+    develop:
+      watch:
+        - action: sync
+          path: ./frontend
+          target: /app
+          ignore:
+            - node_modules/
+            - dist/
+        - action: rebuild
+          path: ./frontend/package.json
+        - action: rebuild
+          path: ./frontend/package-lock.json
+
+volumes:
+  backend_gradle_cache:
+  frontend_node_modules:

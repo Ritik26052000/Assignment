@@ -1,0 +1,30 @@
+{
+  "name": "taskflow",
+  "private": true,
+  "version": "1.0.0",
+  "description": "TaskFlow monorepo — Spring Boot + Kotlin API and React + TypeScript UI",
+  "scripts": {
+    "prepare": "husky",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,yml,yaml,css}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,yml,yaml,css}\"",
+    "lint:frontend": "npm --prefix frontend run lint",
+    "test:frontend": "npm --prefix frontend run test:ci",
+    "build:frontend": "npm --prefix frontend run build",
+    "dev:docker": "docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build --watch",
+    "dev:docker:down": "docker compose -f docker-compose.yml -f docker-compose.dev.yml down"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.2",
+    "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11"
+  },
+  "lint-staged": {
+    "frontend/**/*.{ts,tsx,js,jsx,json,css,md}": [
+      "prettier --write"
+    ],
+    "*.{md,yml,yaml,json}": [
+      "prettier --write"
+    ]
+  }
+}

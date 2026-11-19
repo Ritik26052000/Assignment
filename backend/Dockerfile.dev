@@ -1,0 +1,12 @@
+# Development image: Gradle bootRun with continuous rebuild (source mounted via compose).
+FROM eclipse-temurin:21-jdk
+WORKDIR /workspace
+
+COPY gradlew settings.gradle.kts build.gradle.kts ./
+COPY gradle ./gradle
+RUN chmod +x gradlew && ./gradlew --no-daemon dependencies > /dev/null 2>&1 || true
+
+COPY src ./src
+
+EXPOSE 8080
+CMD ["./gradlew", "bootRun", "--continuous", "-x", "test", "--no-daemon"]

@@ -1,0 +1,14 @@
+# Local development: demo data and Swagger UI on by default (still overridable via env vars).
+taskflow:
+  swagger:
+    enabled: ${SWAGGER_ENABLED:true}
+  seed:
+    demo-data: ${SEED_DEMO_DATA:true}
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:3000}
+
+logging:
+  level:
+    com.taskflow: DEBUG
+    org.springframework.security: INFO
+    org.hibernate.SQL: INFO

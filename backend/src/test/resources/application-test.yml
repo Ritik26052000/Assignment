@@ -1,0 +1,24 @@
+# Test profile: in-memory H2 (PostgreSQL compatibility mode) + Flyway migrations, same as production schema.
+spring:
+  datasource:
+    url: jdbc:h2:mem:taskflow;MODE=PostgreSQL;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+
+taskflow:
+  jwt:
+    # THROW-AWAY SECRET FOR TESTS ONLY. Never use this value anywhere else.
+    secret: test-only-throwaway-secret-0123456789-abcdefghijklmnopqrstuvwxyz
+    expiration-minutes: 5
+  cors:
+    allowed-origins: http://localhost:5173
+  swagger:
+    enabled: false
+  seed:
+    demo-data: false

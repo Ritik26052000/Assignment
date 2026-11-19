@@ -1,0 +1,16 @@
+# Production: everything risky is off unless explicitly enabled through the environment.
+spring:
+  datasource:
+    hikari:
+      maximum-pool-size: ${DB_POOL_SIZE:10}
+
+taskflow:
+  swagger:
+    enabled: ${SWAGGER_ENABLED:false}
+  seed:
+    demo-data: ${SEED_DEMO_DATA:false}
+
+logging:
+  level:
+    root: INFO
+    com.taskflow: INFO
