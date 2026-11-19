@@ -31,7 +31,13 @@ import { useSummary } from '@/modules/board/hooks/useSummary'
 
 const navItems = [
   { to: '/overview', label: 'Overview', icon: LayoutDashboard, end: true },
-  { to: '/projects', label: 'Projects', icon: FolderKanban, end: false, badgeKey: 'projects' as const },
+  {
+    to: '/projects',
+    label: 'Projects',
+    icon: FolderKanban,
+    end: false,
+    badgeKey: 'projects' as const,
+  },
   { to: '/team', label: 'Team', icon: Users, end: true },
   { to: '/activity', label: 'Activity', icon: Activity, end: true },
 ] as const
@@ -54,12 +60,17 @@ export function AppSidebar({
 }: AppSidebarProps) {
   const { logout } = useAuth()
   const navigate = useNavigate()
-  const { projects, isLoading, activeProject, activeProjectId, selectWorkspace, openWorkspaceBoard } =
-    useWorkspace()
+  const {
+    projects,
+    isLoading,
+    activeProject,
+    activeProjectId,
+    selectWorkspace,
+    openWorkspaceBoard,
+  } = useWorkspace()
   const summary = useSummary(activeProjectId ?? '')
 
-  const openTasks =
-    (summary.data?.byStatus.TODO ?? 0) + (summary.data?.byStatus.IN_PROGRESS ?? 0)
+  const openTasks = (summary.data?.byStatus.TODO ?? 0) + (summary.data?.byStatus.IN_PROGRESS ?? 0)
   const totalTasks = summary.data?.total ?? 0
   const doneTasks = summary.data?.byStatus.DONE ?? 0
   const usagePct = totalTasks > 0 ? Math.min(100, Math.round((doneTasks / totalTasks) * 100)) : 0
@@ -108,7 +119,11 @@ export function AppSidebar({
             aria-expanded={!collapsed}
             title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
           >
-            {collapsed ? <PanelLeftOpen className="size-4" /> : <PanelLeftClose className="size-4" />}
+            {collapsed ? (
+              <PanelLeftOpen className="size-4" />
+            ) : (
+              <PanelLeftClose className="size-4" />
+            )}
           </Button>
         )}
       </div>
@@ -133,7 +148,7 @@ export function AppSidebar({
               <button
                 type="button"
                 className={cn(
-                  'flex items-center border bg-white text-left shadow-xs transition-colors hover:bg-accent/40 outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40',
+                  'flex items-center border bg-white text-left shadow-xs transition-colors outline-none hover:bg-accent/40 focus-visible:ring-[3px] focus-visible:ring-ring/40',
                   collapsed
                     ? 'mx-auto size-10 justify-center rounded-lg'
                     : 'w-full gap-3 rounded-xl px-3 py-2.5',
@@ -166,7 +181,11 @@ export function AppSidebar({
                 )}
               </button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" side={collapsed ? 'right' : 'bottom'} className="w-[15.5rem]">
+            <DropdownMenuContent
+              align="start"
+              side={collapsed ? 'right' : 'bottom'}
+              className="w-[15.5rem]"
+            >
               <DropdownMenuLabel>Switch workspace</DropdownMenuLabel>
               <DropdownMenuSeparator />
               {projects.map((project) => (
@@ -244,7 +263,10 @@ export function AppSidebar({
                 </span>
               )}
               {collapsed && badge != null && (
-                <span className="absolute top-1 right-1 size-1.5 rounded-full bg-primary" aria-hidden />
+                <span
+                  className="absolute top-1 right-1 size-1.5 rounded-full bg-primary"
+                  aria-hidden
+                />
               )}
             </NavLink>
           )

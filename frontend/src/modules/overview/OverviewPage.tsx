@@ -80,10 +80,7 @@ export function OverviewPage() {
               summary={dashboard.trendSummary}
               isLoading={dashboard.isPending}
             />
-            <TaskPipelineCard
-              data={dashboard.statusPipeline}
-              isLoading={dashboard.isPending}
-            />
+            <TaskPipelineCard data={dashboard.statusPipeline} isLoading={dashboard.isPending} />
           </div>
 
           <div className="grid gap-4 lg:grid-cols-3">

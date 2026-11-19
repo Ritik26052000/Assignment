@@ -25,7 +25,13 @@ function useProjectActivity(projectId: string | null) {
 
 export function ActivityPage() {
   const { activeProjectId, openWorkspaceBoard } = useWorkspace()
-  const { data: rows = [], isPending, isError, error, refetch } = useProjectActivity(activeProjectId)
+  const {
+    data: rows = [],
+    isPending,
+    isError,
+    error,
+    refetch,
+  } = useProjectActivity(activeProjectId)
 
   if (!activeProjectId) {
     return (
@@ -62,9 +68,7 @@ export function ActivityPage() {
         <EmptyState
           icon={Activity}
           title="No activity yet"
-          action={
-            <Button onClick={() => openWorkspaceBoard(activeProjectId)}>Go to board</Button>
-          }
+          action={<Button onClick={() => openWorkspaceBoard(activeProjectId)}>Go to board</Button>}
         />
       ) : (
         <ol className="space-y-3">

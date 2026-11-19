@@ -24,14 +24,7 @@ interface TaskCardProps {
   isDragging?: boolean
 }
 
-export function TaskCard({
-  task,
-  onEdit,
-  onDelete,
-  onMove,
-  className,
-  isDragging,
-}: TaskCardProps) {
+export function TaskCard({ task, onEdit, onDelete, onMove, className, isDragging }: TaskCardProps) {
   const overdue = isOverdue(task.dueDate, task.status)
   const moveTargets = TASK_STATUSES.filter((s) => s !== task.status)
 

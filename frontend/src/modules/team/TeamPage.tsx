@@ -54,7 +54,11 @@ const PAGE_SIZE_OPTIONS = [5, 10, 20, 50] as const
 
 function TeamTableSkeleton({ rows }: { rows: number }) {
   return (
-    <div className="overflow-hidden rounded-xl border bg-card shadow-xs" aria-busy="true" aria-label="Loading team">
+    <div
+      className="overflow-hidden rounded-xl border bg-card shadow-xs"
+      aria-busy="true"
+      aria-label="Loading team"
+    >
       <Table>
         <TableHeader>
           <TableRow>
@@ -295,9 +299,7 @@ export function TeamPage() {
 
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm text-muted-foreground">
-              {totalElements === 0
-                ? 'No results'
-                : `Showing ${from}–${to} of ${totalElements}`}
+              {totalElements === 0 ? 'No results' : `Showing ${from}–${to} of ${totalElements}`}
             </p>
             <div className="flex flex-wrap items-center gap-2">
               <div className="flex items-center gap-2">

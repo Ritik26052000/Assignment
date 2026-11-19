@@ -1,5 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { usersApi, type CreateUserRequest, type ListUsersParams, type UpdateUserRequest } from '@/api/users.api'
+import {
+  usersApi,
+  type CreateUserRequest,
+  type ListUsersParams,
+  type UpdateUserRequest,
+} from '@/api/users.api'
 import { queryKeys } from '@/lib/query-keys'
 
 /** Full-ish user directory for assignee pickers (capped by backend max page size). */

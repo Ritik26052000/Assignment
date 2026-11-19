@@ -27,7 +27,9 @@ const summary = (
   byStatus,
 })
 
-const task = (partial: Partial<TaskDto> & Pick<TaskDto, 'id' | 'status' | 'priority'>): TaskDto => ({
+const task = (
+  partial: Partial<TaskDto> & Pick<TaskDto, 'id' | 'status' | 'priority'>,
+): TaskDto => ({
   projectId: 'p1',
   title: 'Task',
   description: null,
@@ -56,9 +58,10 @@ describe('dashboard-metrics', () => {
   })
 
   it('builds chart-ready status and priority slices', () => {
-    expect(
-      statusDistribution({ TODO: 2, IN_PROGRESS: 0, DONE: 1 }).map((s) => s.key),
-    ).toEqual(['TODO', 'DONE'])
+    expect(statusDistribution({ TODO: 2, IN_PROGRESS: 0, DONE: 1 }).map((s) => s.key)).toEqual([
+      'TODO',
+      'DONE',
+    ])
 
     expect(
       priorityDistribution([

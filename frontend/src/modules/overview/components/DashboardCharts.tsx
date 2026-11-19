@@ -40,13 +40,7 @@ const tooltipStyle = {
 const axisTick = { fontSize: 11, fill: 'oklch(0.52 0.02 150)' }
 const gridStroke = 'oklch(0.93 0.006 145)'
 
-function Panel({
-  className,
-  children,
-}: {
-  className?: string
-  children: ReactNode
-}) {
+function Panel({ className, children }: { className?: string; children: ReactNode }) {
   return (
     <Card className={cn('h-full gap-4 rounded-2xl border-border/70 py-5 shadow-sm', className)}>
       {children}
@@ -123,7 +117,12 @@ export function DeliveryPaceCard({
     <Panel>
       <PanelHeader title="Delivery pace" description="Tasks created across the last 14 days" />
       <CardContent className="space-y-4 px-5">
-        <ChartFrame isLoading={isLoading} empty={empty} emptyLabel="No recent activity" height={220}>
+        <ChartFrame
+          isLoading={isLoading}
+          empty={empty}
+          emptyLabel="No recent activity"
+          height={220}
+        >
           <AreaChart data={data} margin={{ top: 8, right: 8, left: -18, bottom: 0 }}>
             <defs>
               <linearGradient id="createdFill" x1="0" y1="0" x2="0" y2="1">
@@ -132,7 +131,13 @@ export function DeliveryPaceCard({
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={gridStroke} />
-            <XAxis dataKey="label" tick={axisTick} tickLine={false} axisLine={false} minTickGap={28} />
+            <XAxis
+              dataKey="label"
+              tick={axisTick}
+              tickLine={false}
+              axisLine={false}
+              minTickGap={28}
+            />
             <YAxis allowDecimals={false} tick={axisTick} tickLine={false} axisLine={false} />
             <Tooltip contentStyle={tooltipStyle} />
             <Area
@@ -162,34 +167,18 @@ export function DeliveryPaceCard({
   )
 }
 
-function FooterStat({
-  label,
-  value,
-  hint,
-}: {
-  label: string
-  value: string
-  hint?: string
-}) {
+function FooterStat({ label, value, hint }: { label: string; value: string; hint?: string }) {
   return (
     <div className="min-w-0">
       <p className="text-xs font-medium text-muted-foreground">{label}</p>
       <p className="mt-1 truncate text-sm font-semibold tabular-nums">{value}</p>
-      {hint && hint !== '—' && (
-        <p className="truncate text-[11px] text-muted-foreground">{hint}</p>
-      )}
+      {hint && hint !== '—' && <p className="truncate text-[11px] text-muted-foreground">{hint}</p>}
     </div>
   )
 }
 
 /** Horizontal pipeline bars (reference: Request Pipeline). */
-export function TaskPipelineCard({
-  data,
-  isLoading,
-}: {
-  data: NamedCount[]
-  isLoading?: boolean
-}) {
+export function TaskPipelineCard({ data, isLoading }: { data: NamedCount[]; isLoading?: boolean }) {
   const max = Math.max(...data.map((row) => row.value), 1)
 
   return (
@@ -273,7 +262,12 @@ export function ProjectProgressCard({
           </div>
         </div>
 
-        <ChartFrame isLoading={isLoading} empty={empty} emptyLabel="No project tasks yet" height={200}>
+        <ChartFrame
+          isLoading={isLoading}
+          empty={empty}
+          emptyLabel="No project tasks yet"
+          height={200}
+        >
           <BarChart data={data} margin={{ top: 4, right: 4, left: -18, bottom: 0 }} barGap={4}>
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={gridStroke} />
             <XAxis dataKey="shortName" tick={axisTick} tickLine={false} axisLine={false} />
@@ -310,7 +304,12 @@ export function StatusMixCard({
       <PanelHeader title="Status mix" description="Share of all workspace tasks" />
       <CardContent className="px-5">
         <div className="relative">
-          <ChartFrame isLoading={isLoading} empty={data.length === 0} emptyLabel="No tasks yet" height={180}>
+          <ChartFrame
+            isLoading={isLoading}
+            empty={data.length === 0}
+            emptyLabel="No tasks yet"
+            height={180}
+          >
             <PieChart>
               <Pie
                 data={data}
@@ -504,10 +503,7 @@ export function OperationalReadinessCard({
 
   return (
     <Panel>
-      <PanelHeader
-        title="Operational readiness"
-        description="Deadlines and backlog health"
-      />
+      <PanelHeader title="Operational readiness" description="Deadlines and backlog health" />
       <CardContent className="space-y-5 px-5">
         {isLoading ? (
           <div className="space-y-3">

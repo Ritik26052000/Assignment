@@ -6,10 +6,7 @@ import { AppSidebar } from '@/components/AppSidebar'
 import { Button } from '@/components/ui/button'
 import { WorkspaceProvider } from '@/context/WorkspaceProvider'
 import { useWorkspace } from '@/context/WorkspaceContext'
-import {
-  getStoredSidebarCollapsed,
-  setStoredSidebarCollapsed,
-} from '@/lib/sidebar-storage'
+import { getStoredSidebarCollapsed, setStoredSidebarCollapsed } from '@/lib/sidebar-storage'
 import { cn } from '@/lib/utils'
 
 function formatHeaderDate(date = new Date()) {

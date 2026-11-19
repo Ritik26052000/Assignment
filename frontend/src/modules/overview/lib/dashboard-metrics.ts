@@ -1,12 +1,6 @@
 import { isOverdue, parseLocalDate, toDateInputValue } from '@/lib/dates'
 import { PRIORITY_LABEL, STATUS_LABEL } from '@/lib/task-meta'
-import type {
-  ProjectDto,
-  ProjectSummaryDto,
-  TaskDto,
-  TaskPriority,
-  TaskStatus,
-} from '@/types'
+import type { ProjectDto, ProjectSummaryDto, TaskDto, TaskPriority, TaskStatus } from '@/types'
 import { TASK_PRIORITIES, TASK_STATUSES } from '@/types'
 
 export interface WorkspaceKpis {

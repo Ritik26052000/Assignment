@@ -25,8 +25,7 @@ export const usersApi = {
 
   get: (id: string) => apiClient.get<UserDto>(`/users/${id}`).then((r) => r.data),
 
-  create: (data: CreateUserRequest) =>
-    apiClient.post<UserDto>('/users', data).then((r) => r.data),
+  create: (data: CreateUserRequest) => apiClient.post<UserDto>('/users', data).then((r) => r.data),
 
   update: (id: string, data: UpdateUserRequest) =>
     apiClient.put<UserDto>(`/users/${id}`, data).then((r) => r.data),

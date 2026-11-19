@@ -64,7 +64,7 @@ export function SettingsPage() {
               <dt className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
                 Email
               </dt>
-              <dd className="mt-1 break-all font-medium">{user.email}</dd>
+              <dd className="mt-1 font-medium break-all">{user.email}</dd>
             </div>
             <div className="rounded-lg border bg-muted/40 px-3 py-2">
               <dt className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
@@ -80,7 +80,12 @@ export function SettingsPage() {
         </CardContent>
       </Card>
 
-      <UserFormDialog open={editOpen} onOpenChange={setEditOpen} user={user} onSubmit={handleSubmit} />
+      <UserFormDialog
+        open={editOpen}
+        onOpenChange={setEditOpen}
+        user={user}
+        onSubmit={handleSubmit}
+      />
     </div>
   )
 }

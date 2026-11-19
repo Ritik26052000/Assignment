@@ -33,11 +33,7 @@ function assigneeSelectValue(assigneeId: string | undefined): string {
 
 export function FilterBar({ filters, users, onChange, onClear, hasActiveFilters }: FilterBarProps) {
   return (
-    <div
-      role="group"
-      aria-label="Task filters"
-      className="flex flex-wrap items-center gap-2"
-    >
+    <div role="group" aria-label="Task filters" className="flex flex-wrap items-center gap-2">
       <Select
         value={filters.priority ?? ALL}
         onValueChange={(v) => onChange({ priority: v === ALL ? undefined : (v as TaskPriority) })}
